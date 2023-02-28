@@ -8,7 +8,6 @@ def mandelbrot(width, height, bitmap):
     max_iterations = 50
     limit = 4
     for y in range(height):
-        byte = 0
         for x in range(width):
             Z = complex(0, 0)
             C = complex(2 * x / width - 1.5, 2 * y / height - 1.0)
