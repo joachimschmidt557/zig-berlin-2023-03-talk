@@ -49,7 +49,6 @@ pub fn main() !void {
         std.process.exit(1);
     }
 
-    std.debug.assert(width_height % 8 == 0);
     var bitmap = try allocator.alloc(u8, width_height * width_height);
     defer allocator.free(bitmap);
 
