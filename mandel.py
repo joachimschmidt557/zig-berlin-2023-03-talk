@@ -19,7 +19,14 @@ def mandelbrot(width, height, bitmap):
 
             bitmap[y * width + x] = 1 if norm(Z) <= limit else 0
 
+if len(sys.argv) != 2:
+    print(f"usage: {sys.argv[0]} [width/height]")
+    exit(1)
+
 width_height = int(sys.argv[1])
+if width_height % 8 != 0:
+    print("width/height must be divisible by 8")
+    exit(1)
 
 bitmap = [0] * (width_height * width_height)
 start = time.perf_counter_ns()

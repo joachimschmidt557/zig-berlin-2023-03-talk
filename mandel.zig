@@ -37,7 +37,17 @@ pub fn main() !void {
 
     const args = try std.process.argsAlloc(allocator);
     defer std.process.argsFree(allocator, args);
+
+    if (args.len != 2) {
+        std.debug.print("usage: {s} [width/height]\n", .{args[0]});
+        std.process.exit(1);
+    }
+
     const width_height = try std.fmt.parseInt(usize, args[1], 10);
+    if (width_height % 8 != 0) {
+        std.debug.print("width/height must be divisible by 8\n", .{});
+        std.process.exit(1);
+    }
 
     std.debug.assert(width_height % 8 == 0);
     var bitmap = try allocator.alloc(u8, width_height * width_height);
