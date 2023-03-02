@@ -53,7 +53,7 @@ pub fn main() !void {
     defer allocator.free(bitmap);
 
     var timer = try std.time.Timer.start();
-    try mandelbrot(width_height, width_height, bitmap);
+    try @call(.never_inline, mandelbrot, .{ width_height, width_height, bitmap });
     const elapsed_ns = timer.lap();
 
     std.debug.print("Elapsed ms: {}\n", .{elapsed_ns / std.time.ns_per_ms});
